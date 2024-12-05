@@ -1,0 +1,445 @@
+/* Reset básico y estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ /* Estilos para la página de entrada */
+ #entrada {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #1a237e;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.5s ease-in-out;
+}
+
+#entrada h1 {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+#entrada .logo {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 2rem;
+    border-radius: 20%;
+}
+
+#botonComenzar {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    background-color: white;
+    color: #1a237e;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-weight: 600;
+}
+
+#botonComenzar:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Ocultar contenido principal inicialmente */
+#contenidoPrincipal {
+    display: none;
+}
+
+body {
+    background-color: var(--background-color);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.menu {
+    background: rgba(255,255,255,0.1);
+    border-radius: 50px;
+    padding: 0.5rem;
+    margin: 1rem auto;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1304px;
+    width: 90%;
+}
+
+.menu li {
+    margin: 0 0.5rem;
+}
+
+.menu a {
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.menu a:hover {
+    background: white;
+    color: var(--primary-color);
+}
+
+.menu i {
+    margin-right: 0.3rem;
+}
+
+/* cabezote */
+.header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    padding: 1.5rem 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.header h1 {
+    margin: 0;
+    color: white;
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* define variables globales disponibles en toda la hoja de estilos. */
+:root { 
+    --primary-color: #1a237e; /* un azul oscuro */
+    --secondary-color: #303f9f; /* un azul mas claro */
+    --accent-color: #7986cb; /* un azul pastel claro */
+    --background-color: #f5f6fa; /* un gris muy claro, casi blanco */
+}
+
+/* Contenido principal */
+.contenido {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+/* Sección del video */
+.video {
+    background-color: #e0e0e0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.video-iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 4px;
+}
+
+/* Sección de introducción */
+.introduccion {
+    background-color: #e0e0e0;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.introduccion-titulo {
+    color: #1a237e;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.introduccion-contenido {
+    color: #333;
+    text-align: justify;
+    line-height: 1.8;
+}
+
+/* pie de pagina */
+footer {
+    background-color: #1a237e;
+    padding: 20px;
+    text-align: center;
+    margin-top: 40px;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer p {
+    margin: 5px 0;
+    color: white;
+}
+
+.footer-container {
+    display: flex;
+    align-items: center;
+}
+  
+.footer-logo .logo-small {
+    max-width: 100px; /* tamaño del logo */
+    margin-right: 1rem;
+}
+  
+.footer-text {
+    text-align: left;
+}
+
+/* cabezote responsive */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        padding: 15px;
+        text-align: center;
+    }
+
+    .menu {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .contenido {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+/* Estilos para el carrusel de imagenes */
+.carousel {
+    margin: 40px auto;
+    max-width: 1200px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.carousel-item {
+    height: 400px; /* altura */
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+    opacity: 0.7;
+    background-color: rgba(0,0,0,0.2);
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    opacity: 1;
+    background-color: rgba(0,0,0,0.3);
+}
+
+/* carrusel responsive */
+@media (max-width: 768px) {
+    .carousel {
+        margin: 20px;
+    }
+    
+    .carousel-item {
+        height: 250px;
+    }
+}
+
+/* Estilos para la sección de aspectos destacados */
+aspectos-destacados {
+    padding: 50px 0;
+}
+
+.aspectos-destacados h2 {
+    text-align: center;
+    color: #1a237e;
+    margin-bottom: 40px;
+    font-size: 2rem;
+}
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 0 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card i {
+    font-size: 2.5rem; 
+    color: #1a237e;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.card h3 {
+    color: #1a237e;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.card p {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Estilos para la sección de recursos APA */
+.recursos-apa {
+    padding: 50px 0;
+    background-color: #e0e0e0;
+    margin-top: 40px;
+}
+
+.recursos-apa h2 {
+    text-align: center;
+    color: #1a237e;
+    margin-bottom: 40px;
+    font-size: 2rem;
+}
+
+.recursos-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.recurso-card {
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.recurso-card:hover {
+    transform: translateY(-5px);
+}
+
+.recurso-card i {
+    font-size: 3rem;
+    color: #1a237e;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.recurso-card h3 {
+    color: #1a237e;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+}
+
+.recurso-card p {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* Botones */
+.apa-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #3949ab;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: auto;
+    min-width: 200px;
+}
+
+.apa-button:hover {
+    background-color: #303f9f;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    color: white;
+    text-decoration: none;
+}
+
+.apa-button i {
+    font-size: 1.2rem;
+    color: white;
+    margin: 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .recursos-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .recurso-card {
+        padding: 25px;
+    }
+
+    .apa-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+        min-width: 180px;
+    }
+}
+
+/* barra de desplazamiento */
+::-webkit-scrollbar {
+    width: 18px;
+    }
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color, #303f9f);
+    border-radius: 8px;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+    background-clip: padding-box;
+    }
+
+::-webkit-scrollbar-track {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    }

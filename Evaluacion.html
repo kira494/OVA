@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación - OVA Normas APA</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=home"/>
+    <link rel="icon" href="apa.png" type="image/png">
+</head>
+<body>
+
+<!-- Página de entrada -->
+<div id="iniciar">
+  <img src="apa.png" alt="Logo APA" class="logo">
+  <h1>Bienvenido a la Evaluación de Normas APA ¿Estás listo?</h1>
+  <button id="botoniniciar">Comenzar</button>
+</div>
+
+<!--Evaluacion estilos-->
+<style>
+
+:root {
+    --primary-color: #1a237e;     
+    --secondary-color: #3f51b5;     
+    --accent-color: #5c6bc0;     
+    --white: #ffffff;
+    --hover-color: #283593;
+    --text-color: #333;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+/* estilos pagina de entrada */
+#iniciar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--white); 
+    padding: 20px;
+}
+
+#iniciar .logo {
+    max-width: 200px;
+    margin-bottom: 30px;
+    animation: pulse 2s infinite;
+}
+
+#iniciar h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+#botoniniciar {
+    background-color: var(--white);
+    color: var(--primary-color);
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+#botoniniciar:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+}
+
+/* contenedor de la evaluación */
+.container {
+    display: flex;
+    flex-direction: row;  /* Cambiado a row para diseño horizontal */
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--white);
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 10px 25px var(--shadow-color);
+    max-width: 1000px;  /* Aumentado el ancho máximo */
+    width: 100%;  /* Responsive width */
+    gap: 30px;  /* Espacio entre elementos */
+}
+
+.pregunta {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 30px;
+    line-height: 1.3;
+    flex: 1;  /* Ocupa el espacio disponible */
+}
+
+.botones {
+    display: flex;
+    flex-direction: column;
+    flex: 1;  /* Ocupa el espacio disponible */
+}
+
+/* Botones de respuesta con skew */
+.btn {
+    background-color: var(--white);
+    color: var(--primary-color);
+    padding: 15px 25px;
+    border: 2px solid var(--secondary-color);
+    border-radius: 8px;
+    font-size: 16px;
+    margin: 10px 0;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+    text-transform: uppercase; /* Mayúsculas */ 
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    position: relative; /* Necesario para efecto skew */
+    overflow: hidden; /* Asegura que el efecto quede dentro del botón */
+    z-index: 1; /* Para controlar el orden del pseudo-elemento */
+    transition: all 0.3s ease; /* Transiciones suaves */
+}
+
+/* Efecto hover con skew */
+.btn:hover {
+    color: var(--white); /* Cambia el texto a blanco */
+    box-shadow: 0 6px 8px var(--shadow-color); /* Sombra más grande */
+    transform: translateY(-3px); /* Movimiento hacia arriba */
+}
+
+/* Pseudo-elemento para efecto skew */
+.btn::after {
+    content: "";
+    background: var(--secondary-color); /* Fondo del efecto */
+    position: absolute;
+    z-index: -1; /* Detrás del contenido */
+    left: -20%; /* Posiciona fuera de la vista inicial */
+    right: -20%;
+    top: 0;
+    bottom: 0;
+    transform: skewX(-45deg) scale(0, 1); /* Inicialmente colapsado */
+    transition: all 0.3s ease; /* Efecto suave */
+}
+
+/* Expande el pseudo-elemento en hover */
+.btn:hover::after {
+    transform: skewX(-45deg) scale(1, 1); /* Se expande completamente */
+}
+
+/* Efecto al hacer clic */
+.btn:active {
+    transform: translateY(1px) scale(0.98); /* Presionado */
+    box-shadow: 0 2px 4px var(--shadow-color); /* Sombra reducida */
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Vuelve a vertical en dispositivos más pequeños */
+        text-align: center;
+    }
+    
+    .pregunta {
+        font-size: 22px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .btn {
+        width: 95%; /* Reduce el ancho del botón en dispositivos pequeños */
+        font-size: 14px;
+        padding: 12px 20px;
+    }
+}
+
+  </style>
+
+   <!-- Evaluación -->
+   <div class="container mt-5" style="display: none;">
+    <div class="contenedor">
+        <div class="encabezado">
+            <div class="pregunta" id="pregunta">
+                <!-- Preguntas van acá -->
+            </div>
+        </div>
+        <div class="btn" id="btn1" onclick="oprimir_btn(0)"></div>
+        <div class="btn" id="btn2" onclick="oprimir_btn(1)"></div>
+        <div class="btn" id="btn3" onclick="oprimir_btn(2)"></div>
+        <div class="btn" id="btn4" onclick="oprimir_btn(3)"></div>
+    </div>
+</div>
+
+<!-- Preguntas aleatorias con json -->
+  <script id="preguntas-data" type="application/json">
+    [
+      {
+        "pregunta": "¿Qué son las Normas APA?",
+        "respuesta": "Son un conjunto de directrices diseñadas para facilitar una comunicación clara y precisa en las publicaciones académicas, especialmente en la citación y referenciación de fuentes de información.",
+        "incorrecta1": "Son reglas académicas de las universidades para medir el rendimiento del estudiante a través de trabajos escritos.",
+        "incorrecta2": "Es una guía que solamente se usa para realizar artículos de investigaciones científicas.",
+        "incorrecta3": "Es un manual para que los estudiantes sean organizados en sus trabajos sin importar de dónde surja el contenido de este."
+      },
+      {
+        "pregunta": "¿Cuál es el origen de la sigla APA?",
+        "respuesta": "Viene de una asociación americana de psicología conformada por psicólogos y científicos (American Psychological Association).",
+        "incorrecta1": "Es una asociación conformada únicamente por científicos escritores de todo el mundo.",
+        "incorrecta2": "Es una asociación de profesionales nativos de América que trabajan en instituciones académicas de educación superior.",
+        "incorrecta3": "Es una asociación de profesores universitarios que buscan mejorar la redacción de sus estudiantes."
+      },
+      {
+        "pregunta": "Según las Normas APA 7ma Edición ¿cómo deber ser el interlineado de párrafo?",
+        "respuesta": "Interlineado doble",
+        "incorrecta1": "Interlineado sencillo",
+        "incorrecta2": "Interlineado 1.5",
+        "incorrecta3": "Interlineado múltiple"
+      },
+      {
+        "pregunta": "Según las Normas APA 7ma Edición, ¿cómo deben ser las citas textuales con menos de 40 palabras?",
+        "respuesta": "Se debe escribir inmersa en el texto, entre comillas y sin cursiva",
+        "incorrecta1": "Se debe escribir en un párrafo aparte",
+        "incorrecta2": "Se debe escribir seguida al texto y en cursiva",
+        "incorrecta3": "Se debe escribir fuera del texto entre comillas y en cursiva"
+      },
+      {
+        "pregunta": "Según las Normas APA 7ma Edición, ¿cómo deben ser las citas textuales con más de 40 palabras?",
+        "respuesta": "Se debe escribir aparte del texto, con sangría, sin comillas, sin cursiva, con mismo tipo y tamaño de fuente y con interlineado doble.",
+        "incorrecta1": "Se debe escribir inmersa en el texto, entre comillas y sin cursiva",
+        "incorrecta2": "Se debe escribir en un párrafo aparte",
+        "incorrecta3": "Se debe escribir en cursiva, sin sangría, con un tipo de fuente diferente y un tamaño más pequeño"
+      },
+      {
+        "pregunta": "¿Cuál es el tamaño de la fuente recomendado para el texto en las Normas APA?",
+        "respuesta": "12 puntos",
+        "incorrecta1": "10 puntos",
+        "incorrecta2": "14 puntos",
+        "incorrecta3": "11 puntos"
+      },
+      {
+        "pregunta": "Según las Normas APA 7ma Edición, ¿qué márgenes deben tener los documentos?",
+        "respuesta": "1 pulgada en todos los lados",
+        "incorrecta1": "2 pulgadas en todos los lados",
+        "incorrecta2": "1.5 pulgadas en todos los lados",
+        "incorrecta3": "0.5 pulgadas en todos los lados"
+      },
+      {
+        "pregunta": "¿Cómo deben ir las referencias en el formato APA?",
+        "respuesta": "Con sangría francesa",
+        "incorrecta1": "Con sangría normal",
+        "incorrecta2": "Sin sangría",
+        "incorrecta3": "Con sangría al inicio de cada línea"
+      },
+      {
+        "pregunta": "Según las Normas APA, ¿qué tipo de interlineado se debe utilizar en el texto?",
+        "respuesta": "Interlineado doble",
+        "incorrecta1": "Interlineado sencillo",
+        "incorrecta2": "Interlineado 1.5",
+        "incorrecta3": "Interlineado múltiple"
+      },
+      {
+        "pregunta": "¿Cómo se citan las fuentes dentro del texto cuando el autor tiene más de dos autores en el formato APA?",
+        "respuesta": "Se usa el apellido del primer autor seguido de 'et al.'",
+        "incorrecta1": "Se citan todos los autores con el apellido completo",
+        "incorrecta2": "Se usa solo el apellido del primer autor sin 'et al.'",
+        "incorrecta3": "Se usan las iniciales de los autores"
+      },
+      {
+        "pregunta": "En las Normas APA, ¿qué tipo de alineación se debe usar en el texto?",
+        "respuesta": "Alineación a la izquierda",
+        "incorrecta1": "Alineación centrada",
+        "incorrecta2": "Alineación a la derecha",
+        "incorrecta3": "Justificado"
+      },
+      {
+        "pregunta": "¿Cómo se citan las citas textuales de más de 40 palabras según las Normas APA?",
+        "respuesta": "En un bloque independiente con sangría de 0.5 pulgadas y sin comillas",
+        "incorrecta1": "Dentro del texto con comillas",
+        "incorrecta2": "En un bloque independiente con comillas",
+        "incorrecta3": "En un bloque independiente con comillas y cursiva"
+      },
+      {
+        "pregunta": "Según las Normas APA, ¿cómo deben ser las citas de fuentes electrónicas?",
+        "respuesta": "Se deben incluir el autor, año y URL",
+        "incorrecta1": "Solo se incluye el autor y título del artículo",
+        "incorrecta2": "Se incluye el título del artículo y la editorial",
+        "incorrecta3": "Solo se incluye el año y URL"
+      },
+      {
+        "pregunta": "¿Cómo debe ser el título de un artículo según las Normas APA?",
+        "respuesta": "Debe ir en negritas y en mayúsculas y minúsculas",
+        "incorrecta1": "Debe ir en cursiva",
+        "incorrecta2": "Debe ir en mayúsculas todo el título",
+        "incorrecta3": "Debe ir subrayado"
+      },
+      {
+        "pregunta": "¿En qué caso se utiliza la abreviatura 'p.' en las referencias APA?",
+        "respuesta": "Cuando se cita una página específica de un libro",
+        "incorrecta1": "Cuando se cita un artículo de revista",
+        "incorrecta2": "Cuando se cita un capítulo de un libro",
+        "incorrecta3": "Cuando se cita una página web"
+      },
+      {
+        "pregunta": "Según las Normas APA, ¿cómo se presenta un libro en las referencias?",
+        "respuesta": "Se coloca el autor, año de publicación, título en cursiva, lugar de publicación y editorial",
+        "incorrecta1": "Se coloca solo el autor y título",
+        "incorrecta2": "Se coloca autor, año, título en negrita y editorial",
+        "incorrecta3": "Se coloca autor, título y la URL del libro"
+      },
+      {
+        "pregunta": "¿Cómo se debe presentar la fecha de publicación en las citas según las Normas APA?",
+        "respuesta": "Debe ir entre paréntesis después del autor",
+        "incorrecta1": "Debe ir al final de la cita",
+        "incorrecta2": "Debe ir antes del autor",
+        "incorrecta3": "Debe ir entre comillas"
+      },
+      {
+        "pregunta": "Según las Normas APA, ¿qué se debe hacer cuando no se encuentra la fecha de publicación de una fuente?",
+        "respuesta": "Se usa 's.f.' para indicar 'sin fecha'",
+        "incorrecta1": "Se omite la referencia",
+        "incorrecta2": "Se utiliza el año de consulta",
+        "incorrecta3": "Se deja en blanco"
+      },
+      {
+        "pregunta": "¿Qué información se debe incluir en la referencia de una revista electrónica según las Normas APA?",
+        "respuesta": "Autor, año, título del artículo, nombre de la revista, volumen, número y URL",
+        "incorrecta1": "Solo autor, año y título del artículo",
+        "incorrecta2": "Autor, año, título, volumen y número",
+        "incorrecta3": "Autor, año y nombre de la revista"
+      },
+      {
+        "pregunta": "¿Cómo se citan varias obras de un mismo autor dentro de una misma referencia en el estilo APA?",
+        "respuesta": "Se colocan en orden cronológico, separadas por punto y coma",
+        "incorrecta1": "Se colocan en orden alfabético",
+        "incorrecta2": "Se colocan en el orden en que fueron consultadas",
+        "incorrecta3": "Se coloca solo la más reciente"
+      },
+      {
+        "pregunta": "Según las Normas APA, ¿qué se hace cuando se cita una fuente con múltiples autores?",
+        "respuesta": "Se citan los apellidos de todos los autores la primera vez y después solo el primero seguido de 'et al.'",
+        "incorrecta1": "Se citan los apellidos de todos los autores en todas las ocasiones",
+        "incorrecta2": "Se usa solo el apellido del primer autor en todas las citas",
+        "incorrecta3": "Se usa 'et al.' siempre"
+      },
+      {
+        "pregunta": "¿Cómo se deben presentar los títulos de libros, revistas y periódicos en las referencias APA?",
+        "respuesta": "En cursiva",
+        "incorrecta1": "En negrita",
+        "incorrecta2": "Subrayados",
+        "incorrecta3": "En mayúsculas"
+      },
+      {
+        "pregunta": "¿Cómo se citan las fuentes en las que el autor es desconocido según las Normas APA?",
+        "respuesta": "Se coloca el título de la obra en lugar del autor",
+        "incorrecta1": "Se omite la referencia",
+        "incorrecta2": "Se utiliza 'Anónimo' como autor",
+        "incorrecta3": "Se coloca el nombre de la fuente"
+      },
+      {
+        "pregunta": "¿Qué se debe incluir cuando se cita una página web según las Normas APA?",
+        "respuesta": "El autor, fecha de publicación, título de la página y la URL",
+        "incorrecta1": "El título de la página y la URL solamente",
+        "incorrecta2": "El autor y la URL solamente",
+        "incorrecta3": "El autor y el año de publicación solamente"
+      },
+      {
+        "pregunta": "¿Cómo deben ser las notas al pie en las Normas APA?",
+        "respuesta": "Se deben usar con moderación y solo para aclaraciones importantes",
+        "incorrecta1": "Se deben usar en cada página",
+        "incorrecta2": "Se deben usar en todas las citas",
+        "incorrecta3": "Se deben evitar en su totalidad"
+      },
+      {
+        "pregunta": "Según las Normas APA, ¿cómo se citan las películas?",
+        "respuesta": "Se cita el título de la película en cursiva, seguido del director, año y el formato de la fuente",
+        "incorrecta1": "Se cita solo el nombre del director",
+        "incorrecta2": "Se cita el título de la película en mayúsculas",
+        "incorrecta3": "Se cita solo el nombre de la película"
+      },
+      {
+        "pregunta": "¿Cómo se citan las entrevistas personales en el formato APA?",
+        "respuesta": "Se cita solo el nombre del entrevistado, la fecha y el tipo de entrevista",
+        "incorrecta1": "Se cita el nombre del entrevistado y el lugar de la entrevista",
+        "incorrecta2": "Se cita el nombre del entrevistado, el título de la entrevista y la URL",
+        "incorrecta3": "No se cita en las referencias"
+      },
+      {
+        "pregunta": "Según las Normas APA, ¿cómo se deben citar los documentos legales?",
+        "respuesta": "Se cita el nombre del caso, el volumen y la corte",
+        "incorrecta1": "Se cita solo el nombre del caso",
+        "incorrecta2": "Se cita el nombre del caso y la fecha",
+        "incorrecta3": "Se cita el nombre del caso y el número de expediente"
+      },
+      {
+        "pregunta": "¿Cómo se deben citar las tesis en las Normas APA?",
+        "respuesta": "Se cita el autor, el año, el título de la tesis en cursiva, el tipo de tesis, la universidad y la URL si está disponible",
+        "incorrecta1": "Se cita solo el título de la tesis",
+        "incorrecta2": "Se cita solo el nombre del autor",
+        "incorrecta3": "Se cita el autor y el título de la tesis solamente"
+      }
+    ]
+    </script>
+    
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+</html>
